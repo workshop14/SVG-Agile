@@ -4,7 +4,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     files: [
       'bower_components/jquery/dist/jquery.min.js',
-      'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
+      // 'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'bower_components/jasmine-fixture/dist/jasmine-fixture.min.js',
       'src/**/*.js',
       'spec/**/*spec.js'

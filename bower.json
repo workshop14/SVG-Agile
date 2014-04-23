@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "hammerjs": "1.0.10"
+    "hammerjs": "~1.0.10"
   },
   "devDependencies": {
     "jquery": "~2.1.0",
