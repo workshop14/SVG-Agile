@@ -6,7 +6,8 @@
   }
   Viewer = function(id){
     var element = getElement(id);
-    console.log(Object.keys(element));
-    this.transform = element.transform;
+    var matrix = element.transform.baseVal.consolidate() || element.ownerSVGElement.createSVGMatrix();
+    var output = 'matrix('+ [matrix.a,matrix.b,matrix.c,matrix.d,matrix.e,matrix.f].join(' ') + ')';
+    element.setAttribute('transform', output);
   };
 }());
