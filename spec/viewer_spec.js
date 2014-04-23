@@ -20,6 +20,16 @@ describe('Viewer with single group and no compound transforms', function(){
     expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
   });
 
+  it('should be possible to drag', function(){
+    viewer = new Viewer('testG');
+    var hammerHandle = viewer._test.hammertime;
+    hammerHandle.trigger('touch', {target: agileGroup});
+    hammerHandle.trigger('dragstart', {});
+    hammerHandle.trigger('drag', {deltaX: 500, deltaY: 250});
+    expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 1000 0)');
+    hammerHandle.trigger('release', {});
+  });
+
   // it('should raise and exception if not given an element id', function(){
   //   expect(function(){
   //     new Viewer('invalid');

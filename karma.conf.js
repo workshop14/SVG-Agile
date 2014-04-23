@@ -6,6 +6,7 @@ module.exports = function(config) {
       'bower_components/jquery/dist/jquery.min.js',
       // 'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'bower_components/jasmine-fixture/dist/jasmine-fixture.min.js',
+      'bower_components/hammerjs/hammer.min.js',
       'src/**/*.js',
       'spec/**/*spec.js'
     ],
