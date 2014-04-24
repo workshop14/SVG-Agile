@@ -25,7 +25,7 @@
 
   Viewer = function(id){
     var activeElement = getElement(id);
-    var matrix = activeElement.transform.baseVal.consolidate().matrix || identityMatrix();
+    var matrix = activeElement.transform.baseVal.consolidate() || identityMatrix();
     var hammertime = Hammer(document).on('touch', touchHandler);
     setTransform(activeElement, createSVGTransform(matrix));
     
