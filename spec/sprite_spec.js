@@ -85,7 +85,7 @@ describe('sprite with simple screen CTM', function(){
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 400 800)');
     });
 
-    it('should optionally fix the transformation', function(){
+    it('should optionally fix the translation', function(){
       sprite.drag(100, 200, true);
       sprite.drag(100, 200);
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 800 1600)');
@@ -99,8 +99,20 @@ describe('sprite with simple screen CTM', function(){
     });
 
     it('it should scale in SVG pixels', function(){
-      sprite.scale(0,0,2);
+      sprite.scale(0, 0, 2);
       expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
+    });
+
+    it('should scale from the same origin', function(){
+      sprite.scale(0, 0, 2);
+      sprite.scale(0, 0, 2);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
+    });
+
+    it('should optionally fix the scaling', function(){
+      sprite.scale(0, 0, 2, true);
+      sprite.scale(0, 0, 2);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(4 0 0 4 0 0)');
     });
   });
 });
