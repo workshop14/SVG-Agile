@@ -4,7 +4,7 @@ describe('sprite with simple screen CTM', function(){
     var SVGString = 
     '<svg id="test" width="500" viewBox="0 0 2000 1000">' +
       '<g id="A" transform="translate(30,40)"><g>' +
-      '<g id="B"><g>' +
+      '<g id="B" transform="translate(30,40) matrix(2 0 0 2 0 0)"><g>' +
       '<g id="C"><g>' +
     '</svg>' +
     '<p id="D"></p>'
@@ -31,6 +31,11 @@ describe('sprite with simple screen CTM', function(){
     it('should replace translations with matrices', function(){
       var sprite = new Sprite(groupA);
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 30 40)');
+    });
+
+    it('should consolidate multiple transforms', function(){
+      var sprite = new Sprite(groupB);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 60 80)');
     });
   });
 });
