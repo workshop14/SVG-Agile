@@ -31,7 +31,7 @@
       sprite.zoom(event.gesture.center.pageX, event.gesture.center.pageY, event.gesture.scale);
     }
 
-    function pinchendHandler(event){
+    function transformendHandler(event){
       sprite.zoom(event.gesture.center.pageX, event.gesture.center.pageY, event.gesture.scale, true);
     }
 
@@ -42,7 +42,7 @@
     function activity(option){
       hammertime[option]('drag', dragHandler);
       hammertime[option]('pinch', pinchHandler);
-      hammertime[option]('pinchend', pinchendHandler);
+      hammertime[option]('transformend', transformendHandler);
       hammertime[option]('dragend', dragendHandler);
       hammertime[option]('release', releaseHandler);
     }

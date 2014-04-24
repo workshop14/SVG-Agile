@@ -79,6 +79,24 @@ describe('zooming on the group', function(){
       hammertime.trigger('pinch', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
     });
+
+    it('should zoom from the same achor point', function(){
+      var test = document.getElementById('test');
+      var fix = test.getScreenCTM();
+      hammertime.trigger('pinch', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
+      fix = test.getScreenCTM();
+      hammertime.trigger('pinch', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
+    });
+
+    it('should set a new anchor point on transformend events',function(){
+      var test = document.getElementById('test');
+      var fix = test.getScreenCTM();
+      hammertime.trigger('transformend', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
+      fix = test.getScreenCTM();
+      hammertime.trigger('pinch', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(4 0 0 4 0 0)');
+    });
   });
   
   describe('touch interation', function(){
