@@ -15,6 +15,7 @@ describe('Viewer with single group and no compound transforms', function(){
   afterEach(function(){
     var fix = document.getElementById('test');
     fix.parentElement.removeChild(fix);
+    agile.kill();
   });
 
   it('should consolidate transfomrs and create a identity transform', function(){
@@ -31,11 +32,21 @@ describe('Viewer with single group and no compound transforms', function(){
       hammertime.trigger('release', {});
     });
 
-    it('should be possible to drag', function(){
-      hammertime.trigger('drag', {deltaX: 500, deltaY: 250});
+    it('should drag horizontally', function(){
+      hammertime.trigger('drag', {deltaX: 250, deltaY: 0});
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 1000 0)');
     });
-  })
+
+    it('should drag vertically', function(){
+      hammertime.trigger('drag', {deltaX: 0, deltaY: 250});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 1000)');
+    });
+
+    it('should drag diagonally', function(){
+      hammertime.trigger('drag', {deltaX: -250, deltaY: -250});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 -1000 -1000)');
+    });
+  });
 
   // it('should raise and exception if not given an element id', function(){
   //   expect(function(){
