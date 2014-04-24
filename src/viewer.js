@@ -14,9 +14,6 @@
     var hammertime = Hammer(document).on('touch', touchHandler);
     
     function touchHandler (event) {
-      console.log(event.target.id);
-      console.log(activeElement.id);
-      console.log(isChild(event.target, activeElement));
       if (isChild(event.target, activeElement)) {
         activity('on');
       }

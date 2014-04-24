@@ -64,14 +64,6 @@ describe('Viewer with single group and no compound transforms', function(){
   });
   
   describe('touch interation', function(){
-    it('should not move when the touch is not on the group', function(){
-      otherGroup = document.getElementById('B');
-      hammertime.trigger('touch', {target: otherGroup});
-      hammertime.trigger('dragstart', {});
-      hammertime.trigger('dragend', {deltaX: -250, deltaY: -250});
-      hammertime.trigger('release', {});
-      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
-    });
 
     it('should move when the touch is on any child of the active element', function(){
       child = document.getElementById('myPath');
