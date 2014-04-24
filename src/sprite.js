@@ -11,14 +11,15 @@
       transform.setMatrix(svgContainer.createSVGMatrix());
     }
 
-    var matrix = transform.matrix;
+    var matrix = transform.matrix.scale(1);
 
     element.transform.baseVal.initialize(transform);
-    
-    this.translate = function(dX, dY){
+
+    this.translate = function(dX, dY, permanent){
       var newMatrix = matrix.translate(dX, dY);
       transform.setMatrix(newMatrix);
       element.transform.baseVal.initialize(transform);
+      if (permanent) { matrix = newMatrix; }
     };
   };
 }());

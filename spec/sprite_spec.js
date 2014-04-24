@@ -49,9 +49,22 @@ describe('sprite with simple screen CTM', function(){
     beforeEach(function(){
       sprite = new Sprite(groupA);
     });
+
     it('should translate in svg pixels', function(){
       sprite.translate(100, 200);
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 100 200)');
+    });
+
+    it('should translate from the same origin', function(){
+      sprite.translate(100, 200);
+      sprite.translate(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 100 200)');
+    });
+
+    it('should optionally fix the transformation', function(){
+      sprite.translate(100, 200, true);
+      sprite.translate(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 200 400)');
     });
   });
 });
