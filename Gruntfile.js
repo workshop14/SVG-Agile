@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'src/sprite.js',
-          'src/viewer.js'
+          'src/agile.js'
         ],
         dest: 'dist/<%= pkg.name %>.js'
       }
