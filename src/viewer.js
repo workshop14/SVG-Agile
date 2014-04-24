@@ -23,7 +23,6 @@
     throw 'No element found';
   }
 
-
   Viewer = function(id){
     var element = getElement(id);
     var matrix = element.transform.baseVal.consolidate() || identityMatrix();
@@ -34,23 +33,21 @@
       activityOn(hammertime);
     }
 
-    function dragHandler(event){
+    function drag(deltaX, deltaY){
       var ctm = element.parentNode.getScreenCTM().inverse();
-      var deltaX = ctm.a * event.gesture.deltaX;
-      var deltaY = ctm.a * event.gesture.deltaY;
+      deltaX = ctm.a * deltaX;
+      deltaY = ctm.a * deltaY;
       var newMatrix = matrix.translate(deltaX, deltaY);
-      newTransform = element.transform.baseVal.createSVGTransformFromMatrix(newMatrix);
-      element.transform.baseVal.initialize(newTransform);
+      setTransform(element, createSVGTransform(newMatrix));
+      return newMatrix;
+    }
+
+    function dragHandler(event){
+      drag(event.gesture.deltaX, event.gesture.deltaY);
     }
 
     function dragendHandler(event){
-      var ctm = element.parentNode.getScreenCTM().inverse();
-      var deltaX = ctm.a * event.gesture.deltaX;
-      var deltaY = ctm.a * event.gesture.deltaY;
-      var newMatrix = matrix.translate(deltaX, deltaY);
-      matrix = newMatrix;
-      newTransform = element.transform.baseVal.createSVGTransformFromMatrix(newMatrix);
-      element.transform.baseVal.initialize(newTransform);
+      matrix = drag(event.gesture.deltaX, event.gesture.deltaY);
     }
 
     function activityOn(instance){
