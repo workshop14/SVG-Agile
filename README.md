@@ -21,7 +21,7 @@ Minified library is currently at 1.9kB. Adds event listeners for touch, drag, pi
 - touch rotation
 
 # Usage
-- Add [hammer.min.js]() and [svgagile.min.js]() your project directory
+- Add [hammer.min.js](), [svgagile.min.js](https://raw.githubusercontent.com/workshop14/SVG-Agile/master/dist/svgagile.min.js) and [svgagile.css](https://raw.githubusercontent.com/workshop14/SVG-Agile/master/dist/svgagile.css) your project directory
 - Include *hammer.min.js* and *svgagile.min.js* in you html
 - Include *svgagile.css* (This disables native scrolling and can effect other areas of your site)
 - Optionally include *hammer.fakemultitouch.js* and/or *hammer.showtouches.js*
