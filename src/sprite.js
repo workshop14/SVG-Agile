@@ -8,7 +8,10 @@
   }
 
   function setTransform(element, transform){
-    element.transform.baseVal.initialize(transform);
+    // element.transform.baseVal.initialize(transform);
+    var m = transform.matrix;
+    var str = 'matrix(' + [m.a,m.b,m.c,m.d,m.e,m.f].join(' ') + ')';
+    element.setAttribute('transform', str);
   }
 
 
@@ -42,9 +45,9 @@
     };
     this.mapTo = function(x, y){
       x = inverseScreenCTM.a * x + inverseScreenCTM.e;
-      y = inverseScreenCTM.b * y + inverseScreenCTM.f;
+      y = inverseScreenCTM.d * y + inverseScreenCTM.f;
       return {x: x, y: y};
-    }
+    };
     this.updateCTM();
 
   };
@@ -63,6 +66,7 @@
   Sprite.prototype.zoom = function(x, y, magnification, permanent){
     var vector = this.mapTo(x,y);
     this.scale(vector.x, vector.y, magnification, permanent);
+    this.updateCTM();
   };
 
   Sprite.prototype.scale = function(x, y, magnification, permanent){

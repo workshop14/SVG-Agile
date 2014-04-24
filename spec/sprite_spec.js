@@ -130,7 +130,6 @@ describe('sprite with simple screen CTM', function(){
     it('should zoom in screen pixels', function(){
       var test = document.getElementById('test');
       var fix = test.getScreenCTM();
-      console.log(fix.e, fix.f);
       sprite.zoom(fix.e, fix.f, 2);
       expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
     });

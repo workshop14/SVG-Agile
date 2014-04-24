@@ -74,7 +74,9 @@ describe('zooming on the group', function(){
     });
 
     it('should be able to zoom from the origin', function(){
-      hammertime.trigger('pinch', {center:{pageX:0,  pageY: 0}, scale: 2});
+      var test = document.getElementById('test');
+      var fix = test.getScreenCTM();
+      hammertime.trigger('pinch', {center:{pageX:fix.e,  pageY: fix.f}, scale: 2});
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
     });
   });
