@@ -1,5 +1,5 @@
 describe('Viewer with single group and no compound transforms', function(){
-  var agileGroup;
+  var agileGroup, agile, hammertime;
 
   beforeEach(function(){
     var SVGString = 
@@ -8,6 +8,8 @@ describe('Viewer with single group and no compound transforms', function(){
     '</svg>';
     document.body.innerHTML += SVGString;
     agileGroup = document.getElementById('testG');
+    agile = new Viewer('testG');
+    hammertime = agile._test.hammertime;
   });
 
   afterEach(function(){
@@ -16,19 +18,24 @@ describe('Viewer with single group and no compound transforms', function(){
   });
 
   it('should consolidate transfomrs and create a identity transform', function(){
-    viewer = new Viewer('testG');
     expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
   });
 
-  it('should be possible to drag', function(){
-    viewer = new Viewer('testG');
-    var hammerHandle = viewer._test.hammertime;
-    hammerHandle.trigger('touch', {target: agileGroup});
-    hammerHandle.trigger('dragstart', {});
-    hammerHandle.trigger('drag', {deltaX: 500, deltaY: 250});
-    expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 1000 0)');
-    hammerHandle.trigger('release', {});
-  });
+  describe('Dragging the group', function(){
+    beforeEach(function(){
+      hammertime.trigger('touch', {target: agileGroup});
+      hammertime.trigger('dragstart', {});
+    });
+
+    afterEach(function(){
+      hammertime.trigger('release', {});
+    });
+
+    it('should be possible to drag', function(){
+      hammertime.trigger('drag', {deltaX: 500, deltaY: 250});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 1000 0)');
+    });
+  })
 
   // it('should raise and exception if not given an element id', function(){
   //   expect(function(){
