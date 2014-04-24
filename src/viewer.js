@@ -27,12 +27,17 @@
       sprite.drag(event.gesture.deltaX, event.gesture.deltaY, true);
     }
 
+    function pinchHandler(event){
+      sprite.zoom(event.gesture.deltaX, event.gesture.deltaY, event.gesture.scale);
+    }
+
     function releaseHandler(event){
       activity('off');
     }
 
     function activity(option){
       hammertime[option]('drag', dragHandler);
+      hammertime[option]('pinch', pinchHandler);
       hammertime[option]('dragend', dragendHandler);
       hammertime[option]('release', releaseHandler);
     }

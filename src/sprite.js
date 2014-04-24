@@ -54,4 +54,10 @@
     this.setCurrent(newMatrix);
     if (permanent) { this.setAnchor(newMatrix); }
   };
+
+  Sprite.prototype.scale = function(x, y, magnification, permanent){
+    var newMatrix = this.readAnchor().scale(magnification);
+    this.setCurrent(newMatrix);
+    if (permanent) { this.setAnchor(newMatrix); }
+  };
 }());

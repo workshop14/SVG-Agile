@@ -91,4 +91,16 @@ describe('sprite with simple screen CTM', function(){
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 800 1600)');
     });
   });
+
+  describe('scale', function(){
+    var sprite;
+    beforeEach(function(){
+      sprite = new Sprite(groupA);
+    });
+
+    it('it should scale in SVG pixels', function(){
+      sprite.scale(0,0,2);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
+    });
+  });
 });

@@ -62,6 +62,22 @@ describe('Viewer with single group and no compound transforms', function(){
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 -1000)');
     });
   });
+
+describe('zooming on the group', function(){
+  beforeEach(function(){
+      hammertime.trigger('touch', {target: agileGroup});
+      hammertime.trigger('transformstart', {});
+    });
+
+    afterEach(function(){
+      hammertime.trigger('release', {});
+    });
+
+    it('should be able to zoom from the origin', function(){
+      hammertime.trigger('pinch', {center:{pageX:0,  pageY: 0}, scale: 2});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(2 0 0 2 0 0)');
+    });
+  });
   
   describe('touch interation', function(){
 
