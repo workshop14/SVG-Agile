@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Svg-agile by workshop14</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/workshop14/SVG-Agile">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/workshop14/SVG-Agile/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/workshop14/SVG-Agile/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Svg-agile</h1>
+          <p>Vector Graphics Alive</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/workshop14">workshop14</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="svg-agile" class="anchor" href="#svg-agile"><span class="octicon octicon-link"></span></a>SVG-Agile</h1>
+
+<h4>
+<a name="adding-multitouch-support-for-interactive-manipulation-of-svg-objects-and-groups-of-objects" class="anchor" href="#adding-multitouch-support-for-interactive-manipulation-of-svg-objects-and-groups-of-objects"><span class="octicon octicon-link"></span></a>Adding multitouch support for interactive manipulation of SVG objects and groups of objects</h4>
+
+<p><a href="https://codeclimate.com/github/workshop14/SVG-Agile"><img src="https://codeclimate.com/github/workshop14/SVG-Agile.png" alt="Code Climate"></a>
+<a href="https://www.codeship.io/projects/19665"> <img src="https://www.codeship.io/projects/1f2d3100-adf4-0131-b86c-3a792d0fa0f8/status?branch=master" alt="Codeship Status for workshop14/SVG-Agile"></a></p>
+
+<h2>
+<a name="implementation" class="anchor" href="#implementation"><span class="octicon octicon-link"></span></a>Implementation</h2>
+
+<p>All svg objects that support the transform property may be manipulated with this library. For example group (<em>g</em>), path (<em>path</em>) and rectangle (<em>rect</em>) elements. <strong>NOTE</strong> Does not support transformation of the entire SVG element.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>Minified library is currently at 1.9kB. Adds event listeners for touch, drag, pinch and transform. These events are triggered by the <a href="http://eightmedia.github.io/hammer.js/">hammerjs</a> library.</p>
+
+<h4>
+<a name="current" class="anchor" href="#current"><span class="octicon octicon-link"></span></a>Current</h4>
+
+<ul>
+<li>Drag support with mouse and touch</li>
+<li>Pinch support for zoom</li>
+<li>support of multiple active groups</li>
+<li>JavaScript API to manipulate <em>'agile'</em> elements</li>
+</ul><h4>
+<a name="planned" class="anchor" href="#planned"><span class="octicon octicon-link"></span></a>Planned</h4>
+
+<ul>
+<li>Support for zooming with mousewheel</li>
+<li>key-press zoom and pan support</li>
+<li>temporarily disable</li>
+<li>touch rotation</li>
+</ul><h1>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<ul>
+<li>Add <a href="">hammer.min.js</a>, <a href="https://raw.githubusercontent.com/workshop14/SVG-Agile/master/dist/svgagile.min.js">svgagile.min.js</a> and <a href="https://raw.githubusercontent.com/workshop14/SVG-Agile/master/dist/svgagile.css">svgagile.css</a> your project directory</li>
+<li>Include <em>hammer.min.js</em> and <em>svgagile.min.js</em> in you html</li>
+<li>Include <em>svgagile.css</em> (This disables native scrolling and can effect other areas of your site)</li>
+<li>Optionally include <em>hammer.fakemultitouch.js</em> and/or <em>hammer.showtouches.js</em>
+</li>
+<li>Activate with the following script passing the SVG's id</li>
+</ul><div class="highlight highlight-js"><pre><span class="nx">Hammer</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">fakeMultitouch</span><span class="p">();</span> <span class="c1">// If including fake multitouch</span>
+<span class="nx">Hammer</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">showTouches</span><span class="p">();</span>    <span class="c1">// If including show touches</span>
+<span class="nx">agileInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Agile</span><span class="p">(</span><span class="nx">svgIdString</span><span class="p">);</span> <span class="c1">// For each active object</span>
+</pre></div>
+
+<h1>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h1>
+
+<p>Built on top of <a href="http://eightmedia.github.io/hammer.js/">Hammerjs</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-50374713-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
