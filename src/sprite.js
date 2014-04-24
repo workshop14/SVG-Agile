@@ -36,7 +36,7 @@
       setTransform(element, transform);
     };
     this.updateCTM = function(){
-      inverseScreenCTM = svgContainer.getScreenCTM().inverse();
+      inverseScreenCTM = element.getScreenCTM().inverse();
     };
     this.scaleTo = function(dX, dY){
       dX = inverseScreenCTM.a * dX;
