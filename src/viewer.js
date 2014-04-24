@@ -24,21 +24,21 @@
   }
 
   Viewer = function(id){
-    var element = getElement(id);
-    var matrix = element.transform.baseVal.consolidate() || identityMatrix();
+    var activeElement = getElement(id);
+    var matrix = activeElement.transform.baseVal.consolidate().matrix || identityMatrix();
     var hammertime = Hammer(document).on('touch', touchHandler);
-    setTransform(element, createSVGTransform(matrix));
+    setTransform(activeElement, createSVGTransform(matrix));
     
     function touchHandler (event) {
       activityOn(hammertime);
     }
 
     function drag(deltaX, deltaY){
-      var ctm = element.parentNode.getScreenCTM().inverse();
+      var ctm = activeElement.parentNode.getScreenCTM().inverse();
       deltaX = ctm.a * deltaX;
       deltaY = ctm.a * deltaY;
       var newMatrix = matrix.translate(deltaX, deltaY);
-      setTransform(element, createSVGTransform(newMatrix));
+      setTransform(activeElement, createSVGTransform(newMatrix));
       return newMatrix;
     }
 
@@ -68,7 +68,7 @@
 
     this.kill = function(){
       activityOff(hammertime);
-      hammertime.off('touch', touchHandler)
+      hammertime.off('touch', touchHandler);
     };
 
     this._test = {
