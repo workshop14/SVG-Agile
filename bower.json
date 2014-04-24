@@ -1,0 +1,32 @@
+{
+  "name": "svgagile",
+  "version": "0.0.0",
+  "authors": [
+    "Peter <peterhsaxton@gmail.com>"
+  ],
+  "description": "A library to manipulate svg elements with touch support",
+  "keywords": [
+    "SVG",
+    "transform",
+    "drag",
+    "zoom",
+    "touch",
+    "svg"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "hammerjs": "~1.0.10"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.0",
+    "jasmine-jquery": "~2.0.3",
+    "jasmine-fixture": "~1.2.0"
+  }
+}
