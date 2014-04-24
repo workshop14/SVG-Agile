@@ -1,16 +1,18 @@
 (function(){
+  function compoundTransform (element) {
+    return element.transform.baseVal.consolidate();
+  }
+
+  function unitTransform (svg) {
+    return svg.createSVGTransform(svg.createSVGMatrix());
+  }
+
+
   Sprite = function(element){
     var svgContainer = element.ownerSVGElement;
-    if (!svgContainer) {
-      throw 'Not an SVG element';
-    }
+    if (!svgContainer) { throw 'Not an SVG element'; }
 
-    var transform = element.transform.baseVal.consolidate();
-    if (!transform) {
-      transform = svgContainer.createSVGTransform();
-      transform.setMatrix(svgContainer.createSVGMatrix());
-    }
-
+    var transform = compoundTransform(element) || unitTransform(svgContainer);
     var anchor = transform.matrix.scale(1);
 
     element.transform.baseVal.initialize(transform);
