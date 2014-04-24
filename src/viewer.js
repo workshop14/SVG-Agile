@@ -1,13 +1,8 @@
 (function(){
 
-  function getElement(id){
-    var element = document.getElementById(id);
-    if (element) { return element; }
-    throw 'No element found';
-  }
-
   Viewer = function(id){
-    var activeElement = getElement(id);
+    var activeElement = document.getElementById(id);
+    if (!activeElement) { throw 'No element found'; }
     var sprite = new Sprite(activeElement);
     var hammertime = Hammer(document).on('touch', touchHandler);
     
