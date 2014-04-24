@@ -11,17 +11,24 @@
       transform.setMatrix(svgContainer.createSVGMatrix());
     }
 
-    var matrix = transform.matrix.scale(1);
+    var anchor = transform.matrix.scale(1);
 
     element.transform.baseVal.initialize(transform);
+
+    this.readAnchor = function(){
+      return anchor;
+    };
+    this.setAnchor = function(matrix){
+      anchor = matrix;
+    };
 
     var screenCTM = svgContainer.getScreenCTM().inverse();
 
     this.translate = function(dX, dY, permanent){
-      var newMatrix = matrix.translate(dX, dY);
+      var newMatrix = this.readAnchor().translate(dX, dY);
       transform.setMatrix(newMatrix);
       element.transform.baseVal.initialize(transform);
-      if (permanent) { matrix = newMatrix; }
+      if (permanent) { this.setAnchor(newMatrix); }
     };
     this.drag = function(dX, dY, permanent){
       dX = screenCTM.a * dX;
