@@ -50,16 +50,20 @@
       matrix = drag(event.gesture.deltaX, event.gesture.deltaY);
     }
 
+    function releaseHandler(event){
+      activityOff(hammertime);
+    }
+
     function activityOn(instance){
       instance.on('drag', dragHandler);
       instance.on('dragend', dragendHandler);
-      //instance.on('release', releaseHandler);
+      instance.on('release', releaseHandler);
     }
 
     function activityOff(instance){
       instance.off('drag', dragHandler);
       instance.off('dragend', dragendHandler);
-      //instance.on('release', releaseHandler);
+      instance.off('release', releaseHandler);
     }
 
     this.kill = function(){
