@@ -56,7 +56,7 @@
   };
 
   Sprite.prototype.scale = function(x, y, magnification, permanent){
-    var newMatrix = this.readAnchor().scale(magnification);
+    var newMatrix = this.readAnchor().translate(x, y).scale(magnification).translate(-x, -y);
     this.setCurrent(newMatrix);
     if (permanent) { this.setAnchor(newMatrix); }
   };

@@ -114,5 +114,10 @@ describe('sprite with simple screen CTM', function(){
       sprite.scale(0, 0, 2);
       expect(groupA.getAttribute('transform')).toEqual('matrix(4 0 0 4 0 0)');
     });
+
+    it('should scale from a central point', function(){
+      sprite.scale(1000, 500, 2);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(2 0 0 2 -1000 -500)');
+    });
   });
 });
