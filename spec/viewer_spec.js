@@ -4,11 +4,14 @@ describe('Viewer with single group and no compound transforms', function(){
   beforeEach(function(){
     var SVGString = 
     '<svg id="test" width="500" viewBox="0 0 2000 1000">' +
-      '<g id="testG"><g>' +
+      '<g id="A">' +
+        '<path id="myPath"' +
+      '<g>' +
+      '<g id="B"><g>' +
     '</svg>';
     document.body.innerHTML += SVGString;
-    agileGroup = document.getElementById('testG');
-    agile = new Viewer('testG');
+    agileGroup = document.getElementById('A');
+    agile = new Viewer('A');
     hammertime = agile._test.hammertime;
   });
 
@@ -57,7 +60,26 @@ describe('Viewer with single group and no compound transforms', function(){
       hammertime.trigger('dragend', {deltaX: -250, deltaY: -250});
       hammertime.trigger('drag', {deltaX: 250, deltaY: 0});
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 -1000)');
+    });
+  });
+  
+  describe('touch interation', function(){
+    it('should not move when the touch is not on the group', function(){
+      otherGroup = document.getElementById('B');
+      hammertime.trigger('touch', {target: otherGroup});
+      hammertime.trigger('dragstart', {});
+      hammertime.trigger('dragend', {deltaX: -250, deltaY: -250});
+      hammertime.trigger('release', {});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
+    });
 
+    it('should move when the touch is on any child of the active element', function(){
+      child = document.getElementById('myPath');
+      hammertime.trigger('touch', {target: child});
+      hammertime.trigger('dragstart', {});
+      hammertime.trigger('dragend', {deltaX: -250, deltaY: -250});
+      hammertime.trigger('release', {});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 -1000 -1000)');
     });
   });
 

@@ -22,7 +22,6 @@
 
     setTransform(element, transform);
     
-
     this.readAnchor = function(){
       return anchor;
     };
@@ -49,7 +48,7 @@
     var vector = this.scaleTo(dX, dY);
     this.translate(vector.dX, vector.dY, permanent);
   };
-  
+
   Sprite.prototype.translate = function(dX, dY, permanent){
     var newMatrix = this.readAnchor().translate(dX, dY);
     this.setCurrent(newMatrix);

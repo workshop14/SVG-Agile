@@ -1,5 +1,12 @@
 (function(){
 
+  function isChild(node, container) {
+    while (node) {
+      if (node === container) return true;
+      node = node.parentNode;
+    }
+  }
+
   Viewer = function(id){
     var activeElement = document.getElementById(id);
     if (!activeElement) { throw 'No element found'; }
@@ -7,7 +14,12 @@
     var hammertime = Hammer(document).on('touch', touchHandler);
     
     function touchHandler (event) {
-      activity('on');
+      console.log(event.target.id);
+      console.log(activeElement.id);
+      console.log(isChild(event.target, activeElement));
+      if (isChild(event.target, activeElement)) {
+        activity('on');
+      }
     }
 
     function dragHandler(event){
