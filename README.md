@@ -2,6 +2,8 @@
 
 #### Adding multitouch support for interactive manipulation of SVG objects and groups of objects
 
+[![Code Climate](https://codeclimate.com/github/workshop14/SVG-Agile.png)](https://codeclimate.com/github/workshop14/SVG-Agile)
+
 ## Implementation
 All svg objects that support the transform property may be manipulated with this library. For example group (*g*), path (*path*) and rectangle (*rect*) elements. **NOTE** Does not support transformation of the entire SVG element.
 
