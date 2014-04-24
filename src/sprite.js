@@ -21,19 +21,22 @@
     this.setAnchor = function(matrix){
       anchor = matrix;
     };
+    this.setCurrent = function(matrix){
+      transform.setMatrix(matrix);
+      element.transform.baseVal.initialize(transform);
+    };
 
     var screenCTM = svgContainer.getScreenCTM().inverse();
 
-    this.translate = function(dX, dY, permanent){
-      var newMatrix = this.readAnchor().translate(dX, dY);
-      transform.setMatrix(newMatrix);
-      element.transform.baseVal.initialize(transform);
-      if (permanent) { this.setAnchor(newMatrix); }
-    };
     this.drag = function(dX, dY, permanent){
       dX = screenCTM.a * dX;
       dY = screenCTM.d * dY;
       this.translate(dX, dY, permanent);
     };
+  };
+  Sprite.prototype.translate = function(dX, dY, permanent){
+    var newMatrix = this.readAnchor().translate(dX, dY);
+    this.setCurrent(newMatrix);
+    if (permanent) { this.setAnchor(newMatrix); }
   };
 }());
