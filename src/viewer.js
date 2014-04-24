@@ -12,7 +12,7 @@
     var hammertime = Hammer(document).on('touch', touchHandler);
     
     function touchHandler (event) {
-      activityOn(hammertime);
+      activity('on');
     }
 
     function dragHandler(event){
@@ -24,23 +24,17 @@
     }
 
     function releaseHandler(event){
-      activityOff(hammertime);
+      activity('off');
     }
 
-    function activityOn(instance){
-      instance.on('drag', dragHandler);
-      instance.on('dragend', dragendHandler);
-      instance.on('release', releaseHandler);
-    }
-
-    function activityOff(instance){
-      instance.off('drag', dragHandler);
-      instance.off('dragend', dragendHandler);
-      instance.off('release', releaseHandler);
+    function activity(option){
+      hammertime[option]('drag', dragHandler);
+      hammertime[option]('dragend', dragendHandler);
+      hammertime[option]('release', releaseHandler);
     }
 
     this.kill = function(){
-      activityOff(hammertime);
+      activity('off');
       hammertime.off('touch', touchHandler);
     };
 
