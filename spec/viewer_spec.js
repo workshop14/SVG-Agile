@@ -46,6 +46,19 @@ describe('Viewer with single group and no compound transforms', function(){
       hammertime.trigger('drag', {deltaX: -250, deltaY: -250});
       expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 -1000 -1000)');
     });
+
+    it('should drag from the same anchor point', function(){
+      hammertime.trigger('drag', {deltaX: 0, deltaY: 250});
+      hammertime.trigger('drag', {deltaX: -250, deltaY: -250});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 -1000 -1000)');
+    });
+
+    it('should set a new anchor point on dragend events', function(){
+      hammertime.trigger('dragend', {deltaX: -250, deltaY: -250});
+      hammertime.trigger('drag', {deltaX: 250, deltaY: 0});
+      expect(agileGroup.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 -1000)');
+
+    });
   });
 
   // it('should raise and exception if not given an element id', function(){
