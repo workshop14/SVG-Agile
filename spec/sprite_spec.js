@@ -3,9 +3,9 @@ describe('sprite with simple screen CTM', function(){
   beforeEach(function(){
     var SVGString = 
     '<svg id="test" width="500" viewBox="0 0 2000 1000">' +
-      '<g id="A" transform="translate(30,40)"><g>' +
+      '<g id="A"><g>' +
       '<g id="B" transform="scale(2) translate(30,40)"><g>' +
-      '<g id="C"><g>' +
+      '<g id="C" transform="translate(30,40)"><g>' +
     '</svg>' +
     '<p id="D"></p>'
     ;
@@ -29,8 +29,8 @@ describe('sprite with simple screen CTM', function(){
     });
 
     it('should replace translations with matrices', function(){
-      var sprite = new Sprite(groupA);
-      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 30 40)');
+      var sprite = new Sprite(groupC);
+      expect(groupC.getAttribute('transform')).toEqual('matrix(1 0 0 1 30 40)');
     });
 
     it('should consolidate multiple transforms', function(){
@@ -39,8 +39,19 @@ describe('sprite with simple screen CTM', function(){
     });
 
     it('should create an identity transform when none provided', function(){
-      var sprite = new Sprite(groupC);
-      expect(groupC.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
+      var sprite = new Sprite(groupA);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 0 0)');
+    });
+  });
+
+  describe('transformation', function(){
+    var sprite;
+    beforeEach(function(){
+      sprite = new Sprite(groupA);
+    });
+    it('should translate in svg pixels', function(){
+      sprite.translate(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 100 200)');
     });
   });
 });
