@@ -40,6 +40,11 @@
       dY = inverseScreenCTM.d * dY;
       return {dX: dX, dY: dY};
     };
+    this.mapTo = function(x, y){
+      x = inverseScreenCTM.a * x + inverseScreenCTM.e;
+      y = inverseScreenCTM.b * y + inverseScreenCTM.f;
+      return {x: x, y: y};
+    }
     this.updateCTM();
 
   };
@@ -53,6 +58,11 @@
     var newMatrix = this.readAnchor().translate(dX, dY);
     this.setCurrent(newMatrix);
     if (permanent) { this.setAnchor(newMatrix); }
+  };
+
+  Sprite.prototype.zoom = function(x, y, magnification, permanent){
+    var vector = this.mapTo(x,y);
+    this.scale(vector.x, vector.y, magnification, permanent);
   };
 
   Sprite.prototype.scale = function(x, y, magnification, permanent){
