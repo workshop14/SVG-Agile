@@ -13,6 +13,7 @@
 
 
   Sprite = function(element){
+    var inverseScreenCTM;
     var svgContainer = element.ownerSVGElement;
     if (!svgContainer) { throw 'Not an SVG element'; }
 
@@ -20,6 +21,7 @@
     var anchor = transform.matrix.scale(1);
 
     setTransform(element, transform);
+    
 
     this.readAnchor = function(){
       return anchor;
@@ -31,16 +33,23 @@
       transform.setMatrix(matrix);
       setTransform(element, transform);
     };
-
-    var screenCTM = svgContainer.getScreenCTM().inverse();
-
-    this.drag = function(dX, dY, permanent){
-      dX = screenCTM.a * dX;
-      dY = screenCTM.d * dY;
-      this.translate(dX, dY, permanent);
+    this.updateCTM = function(){
+      inverseScreenCTM = svgContainer.getScreenCTM().inverse();
     };
+    this.scaleTo = function(dX, dY){
+      dX = inverseScreenCTM.a * dX;
+      dY = inverseScreenCTM.d * dY;
+      return {dX: dX, dY: dY};
+    };
+    this.updateCTM();
+
   };
 
+  Sprite.prototype.drag = function(dX, dY, permanent){
+    var vector = this.scaleTo(dX, dY);
+    this.translate(vector.dX, vector.dY, permanent);
+  };
+  
   Sprite.prototype.translate = function(dX, dY, permanent){
     var newMatrix = this.readAnchor().translate(dX, dY);
     this.setCurrent(newMatrix);
