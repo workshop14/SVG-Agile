@@ -13,6 +13,10 @@
     element.transform.baseVal.initialize(transform);
   }
 
+  function identityMatrix(){
+    return dummySVG.createSVGMatrix();
+  }
+
   function getElement(id){
     var element = document.getElementById(id);
     if (element) { return element; }
@@ -22,7 +26,7 @@
 
   Viewer = function(id){
     var element = getElement(id);
-    var matrix = element.transform.baseVal.consolidate() || element.ownerSVGElement.createSVGMatrix();
+    var matrix = element.transform.baseVal.consolidate() || identityMatrix();
     var hammertime = Hammer(document).on('touch', touchHandler);
     setTransform(element, createSVGTransform(matrix));
     
