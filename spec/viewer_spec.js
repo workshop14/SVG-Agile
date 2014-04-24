@@ -1,4 +1,4 @@
-describe('Viewer with single group and no compound transforms', function(){
+describe('Agile with single group and no compound transforms', function(){
   var agileGroup, agile, hammertime;
 
   beforeEach(function(){
@@ -11,7 +11,7 @@ describe('Viewer with single group and no compound transforms', function(){
     '</svg>';
     document.body.innerHTML += SVGString;
     agileGroup = document.getElementById('A');
-    agile = new Viewer('A');
+    agile = new Agile('A');
     hammertime = agile._test.hammertime;
   });
 

@@ -7,7 +7,7 @@
     }
   }
 
-  Viewer = function(id){
+  Agile = function(id){
     var activeElement = document.getElementById(id);
     if (!activeElement) { throw 'No element found'; }
     var sprite = new Sprite(activeElement);
