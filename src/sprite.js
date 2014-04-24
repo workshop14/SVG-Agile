@@ -15,11 +15,18 @@
 
     element.transform.baseVal.initialize(transform);
 
+    var screenCTM = svgContainer.getScreenCTM().inverse();
+
     this.translate = function(dX, dY, permanent){
       var newMatrix = matrix.translate(dX, dY);
       transform.setMatrix(newMatrix);
       element.transform.baseVal.initialize(transform);
       if (permanent) { matrix = newMatrix; }
+    };
+    this.drag = function(dX, dY, permanent){
+      dX = screenCTM.a * dX;
+      dY = screenCTM.d * dY;
+      this.translate(dX, dY, permanent);
     };
   };
 }());

@@ -67,4 +67,28 @@ describe('sprite with simple screen CTM', function(){
       expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 200 400)');
     });
   });
+
+  describe('drag', function(){
+    var sprite;
+    beforeEach(function(){
+      sprite = new Sprite(groupA);
+    });
+
+    it('should drag in screen pixels', function(){
+      sprite.drag(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 400 800)');
+    });
+
+    it('should drag from the same origin', function(){
+      sprite.drag(100, 200);
+      sprite.drag(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 400 800)');
+    });
+
+    it('should optionally fix the transformation', function(){
+      sprite.drag(100, 200, true);
+      sprite.drag(100, 200);
+      expect(groupA.getAttribute('transform')).toEqual('matrix(1 0 0 1 800 1600)');
+    });
+  });
 });
