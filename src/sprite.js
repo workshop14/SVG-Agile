@@ -1,3 +1,4 @@
+var Sprite;
 (function(){
   function compoundTransform(element){
     return element.transform.baseVal.consolidate();

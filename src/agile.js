@@ -1,8 +1,9 @@
+var Agile;
 (function(){
 
   function isChild(node, container) {
     while (node) {
-      if (node === container) return true;
+      if (node === container) { return true; }
       node = node.parentNode;
     }
   }
@@ -11,7 +12,7 @@
     var activeElement = document.getElementById(id);
     if (!activeElement) { throw 'No element found'; }
     var sprite = new Sprite(activeElement);
-    var hammertime = Hammer(document).on('touch', touchHandler);
+    var hammertime = new Hammer(document).on('touch', touchHandler);
     
     function touchHandler (event) {
       if (isChild(event.target, activeElement)) {
@@ -35,7 +36,7 @@
       sprite.zoom(event.gesture.center.pageX, event.gesture.center.pageY, event.gesture.scale, true);
     }
 
-    function releaseHandler(event){
+    function releaseHandler(){
       activity('off');
     }
 
