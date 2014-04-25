@@ -12,7 +12,7 @@ var Agile;
     var activeElement = document.getElementById(id);
     if (!activeElement) { throw 'No element found'; }
     var sprite = new Sprite(activeElement);
-    var hammertime = new Hammer(document).on('touch', touchHandler);
+    var hammertime = new Hammer(document, {preventDefault: true}).on('touch', touchHandler);
     
     function touchHandler (event) {
       if (isChild(event.target, activeElement)) {

@@ -66,6 +66,7 @@ var Sprite;
 
   Sprite.prototype.zoom = function(x, y, magnification, permanent){
     var vector = this.mapTo(x,y);
+    magnification = Math.max(magnification, 0.4);
     this.scale(vector.x, vector.y, magnification, permanent);
     this.updateCTM();
   };
