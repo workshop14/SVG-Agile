@@ -66,6 +66,7 @@ var Sprite;
 
   Sprite.prototype.zoom = function(x, y, magnification, permanent){
     var vector = this.mapTo(x,y);
+    magnification = Math.max(magnification, 0.4);
     this.scale(vector.x, vector.y, magnification, permanent);
     this.updateCTM();
   };
@@ -90,7 +91,7 @@ var Agile;
     var activeElement = document.getElementById(id);
     if (!activeElement) { throw 'No element found'; }
     var sprite = new Sprite(activeElement);
-    var hammertime = new Hammer(document).on('touch', touchHandler);
+    var hammertime = new Hammer(document, {preventDefault: true}).on('touch', touchHandler);
     
     function touchHandler (event) {
       if (isChild(event.target, activeElement)) {
